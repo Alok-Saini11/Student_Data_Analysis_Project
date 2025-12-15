@@ -5,17 +5,32 @@ math = []
 with open("Exam_Score_Prediction.csv","r") as file:
     reader = csv.DictReader(file)
     for i in reader:
-#      print(i["exam_score"])
+      print(i["exam_score"])
       math.append(float(i["exam_score"]))
 
 arr = np.array(math)
+# Mean
 print(np.mean(arr))
+
+# Median
 print(np.median(arr))
+
+# Cumsum
 print(np.cumsum(arr))
+
+# Cumprod
 print(np.cumprod(arr))
+
+# minimum
 print(np.min(arr))
+
+# maximum
 print(np.max(arr))
+
+# standard
 print(np.std(arr))
+
+# var
 print(np.var(arr))
 
 
@@ -33,7 +48,7 @@ status = np.where(floor >= 70, "Allowed","Not Allowed")
 not_allowed = floor[status == "Not Allowed"]
 print("Not Allowed",not_allowed)
 
-# Question.3
+# Question 3.Read SLeep_hours from csv file and check which student sleep between 6 to 8 hours
 sleep = []
 with open("Exam_Score_Prediction.csv","r") as f:
    reader = csv.DictReader(f)
@@ -48,7 +63,7 @@ count = len(y[0])
 
 print("student sleeps between 6 to 8 hours:",count)
 
-# Question.4
+# Question 4.Read gender from csv file and print the count of male,female,others
 gender = []
 with open("Exam_Score_Prediction.csv","r") as f:
    reader = csv.DictReader(f)
