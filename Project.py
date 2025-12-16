@@ -5,7 +5,7 @@ math = []
 with open("Exam_Score_Prediction.csv","r") as file:
     reader = csv.DictReader(file)
     for i in reader:
-      print(i["exam_score"])
+#      print(i["exam_score"])
       math.append(float(i["exam_score"]))
 
 arr = np.array(math)
@@ -36,46 +36,58 @@ print(np.var(arr))
 
 # Question 2.Read class_attendance from csv file and check which student is allowed or not alowed based on 70%
 class_attendance = []
-with open("Exam_Score_Prediction.csv","r") as file:
-   reader = csv.DictReader(file)
-   for value in reader:
-      class_attendance.append(float(value["class_attendance"]))
+with open("Exam_Score_Prediction.csv","r") as f:
+   reader = csv.DictReader(f)
+   for i in reader:
+      class_attendance.append(float(i["class_attendance"]))
 
-attendance = np.array(class_attendance)
-floor = np.floor(attendance)
+arr = np.array(class_attendance)
+x =(np.where(arr >= 70,"Allowed","Not allowed"))
+print("list of allowed and not_allowed students:",x)
+count = 0
+for i in x:
+   if i == "Not allowed":
+      count += 1
+print("not allowed:",count)      
 
-status = np.where(floor >= 70, "Allowed","Not Allowed")
-not_allowed = floor[status == "Not Allowed"]
-print("Not Allowed",not_allowed)
+
 
 # Question 3.Read SLeep_hours from csv file and check which student sleep between 6 to 8 hours
-sleep = []
+Sleep_hours = []
 with open("Exam_Score_Prediction.csv","r") as f:
    reader = csv.DictReader(f)
-   for x in reader:
-      sleep.append(float(x["sleep_hours"]))
+   for i in reader:
+      Sleep_hours.append((i["sleep_hours"]))
+arr = np.array(Sleep_hours,dtype=float)
+count = 0
+len = 0
+for x in arr:
+  if x >= 6 and x <= 8:
+     count += 1
+print("sleep hours:",count) 
 
-hours = np.array(sleep)      
-floor = np.floor(hours)
+for y in arr:
+   len += 1       
+print("students who slept between 6 to 8 hours:",len)     
 
-y = np.where((floor >= 6) & (floor <= 8))
-count = len(y[0])
 
-print("student sleeps between 6 to 8 hours:",count)
 
 # Question 4.Read gender from csv file and print the count of male,female,others
-gender = []
+Gender = []
 with open("Exam_Score_Prediction.csv","r") as f:
    reader = csv.DictReader(f)
-   for y in reader:
-      gender.append(y["gender"])
-
-Gender = np.array(gender)
-
-male_count = len(np.where(Gender == "male")[0])
-female_count = len(np.where(Gender == "female")[0])
-other_count = len(np.where(Gender == "other")[0])
-
-print("Male:",male_count)
-print("Female:",female_count)
-print("Other:",other_count)
+   for i in reader:
+      Gender.append((i["gender"]))
+Male = 0
+Female = 0
+Other = 0      
+for i in Gender:
+   if i == "male":
+      Male += 1
+   elif i == "female":
+      Female += 1
+   else:
+      Other += 1   
+print("male_count:",Male)
+print("female_count:",Female)
+print("other_count:",Other)          
